@@ -1,0 +1,23 @@
+{
+    "name": "epilgrim/currency-converter-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony bundle to make currencies conversions. It keeps track of different rates through time",
+    "keywords": ["currency", "convertion", "rates", "history"],
+    "homepage": "http://github.com/Epilgrim/CurrencyConverterBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Juan Peri",
+            "email": "eternoperegrino@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": ">=2.1, <2.4-dev"
+    },
+    "autoload": {
+        "psr-0": { "Epilgrim\\CurrencyConverterBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Epilgrim/CurrencyConverterBundle"
+}
