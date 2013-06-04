@@ -3,6 +3,7 @@
 namespace Epilgrim\CurrencyConverterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
 
 /**
  * Currency
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity
  */
-class CurrencyRate
+class CurrencyRate implements CurrencyRateInterface
 {
     /**
      * @var integer
@@ -90,7 +91,7 @@ class CurrencyRate
      * sets the end validity date of the rate
      * @param datetime $dateFrom End Date
      */
-    public function setDateTo(\Datetime $dateFrom)
+    public function setDateTo(\Datetime $dateTo)
     {
         $this->dateTo = $dateTo;
         return $this;
