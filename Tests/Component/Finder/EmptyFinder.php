@@ -1,15 +1,19 @@
 <?php
 
-namespace Epilgrim\CurrencyConverterBundle\Tests\Components\Finder;
+namespace Epilgrim\CurrencyConverterBundle\Tests\Component\Finder;
 
 use Epilgrim\CurrencyConverterBundle\Model\FinderInterface;
+use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
 
 class EmptyFinder implements FinderInterface
 {
 	public function findAndAdd($code, \DateTime $date, RepositoryInterface $repository)
 	{
 		$value = $this->find($code, $date);
-		$repository->add($code, $value);
+		if (null !== $value)
+		{
+			$repository->add($code, $value);
+		}
 		return $value;
 	}
 

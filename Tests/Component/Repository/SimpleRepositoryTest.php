@@ -4,7 +4,8 @@ namespace Epilgrim\CurrencyConverterBundle\Tests\Repository;
 use Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository;
 use Epilgrim\CurrencyConverterBundle\Entity\Currency;
 use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate;
-use Epilgrim\CurrencyConverterBundle\Tests\Components\Finder\EmptyFinder;
+use Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder;
+use Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException;
 
 class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -23,7 +24,7 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
             ->setDateTo( new \DateTime('2013-12-31'))
             ->setRate( 2 );
 
-        $finder = $this->getMock('\Epilgrim\CurrencyConverterBundle\Tests\Components\Finder\EmptyFinder', 'find');
+        $finder = $this->getFinder();
         $repo = new SimpleRepository($finder);
         $repo->add('USD', $rate1);
         $repo->add('USD', $rate2);
@@ -34,24 +35,21 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException
      */
     public function testExceptionIfNotManagedCurrency()
     {
-        $finder = $this->getMock('\Epilgrim\CurrencyConverterBundle\Tests\Components\Finder\EmptyFinder', 'find');
+        $finder = $this->getFinder();
         $repo = new SimpleRepository($finder);
-        $this->finder->expects($this->once())
-                 ->method('update')
-                 ->with($this->equalTo('something'));
         $repo->get('USD', new \DateTime('2011-01-01'));
     }
 
     /**
-     * @expectedException Exception
+     * @expectedException Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException
      */
     public function testExceptionIfNotRateForCurrency()
     {
-        $finder = $this->getMock('\Epilgrim\CurrencyConverterBundle\Tests\Components\Finder\EmptyFinder', 'find');
+        $finder = $this->getFinder();
         $repo = new SimpleRepository($finder);
         $rate1 = new CurrencyRate();
         $rate1
@@ -65,10 +63,22 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
 
     public function testFinderGetsCalledIfNoRate()
     {
+        $rate1 = new CurrencyRate();
+        $rate1
+            ->setDateFrom( new \DateTime('2010-01-01'))
+            ->setDateTo( new \DateTime('2012-12-31'))
+            ->setRate( 1.5 );
 
-        $finder = $this->getMock('\Epilgrim\CurrencyConverterBundle\Tests\Components\Finder\EmptyFinder', 'find');
+        $finder = $this->getMock('Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder', array('find'));
+        $finder->expects($this->once())
+            ->method('find')
+            ->will($this->returnValue($rate1))
+            ;
         $repo = new SimpleRepository($finder);
+        $this->assertSame($rate1, $repo->get('USD', new \DateTime('2011-01-01')));
+    }
 
-        $this->assertSame($rate1, $repo->get('USD', new \DateTime('2011-01-01')), 'First currency in the middle of validity returned correctly');
+    private function getFinder(){
+        return $this->getMock('Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder');
     }
 }

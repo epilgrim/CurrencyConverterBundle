@@ -3,6 +3,7 @@ namespace Epilgrim\CurrencyConverterBundle\Component\Repository;
 
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
 use Epilgrim\CurrencyConverterBundle\Model\FinderInterface;
+use Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException;
 
 /**
  * Repository of Rates for a given currency
@@ -26,7 +27,7 @@ abstract class Repository{
 
 		if (null === $rate)
 		{
-			throw new \Exception("Rate not found");
+			throw new NoRateFoundException("Rate not found");
 		}
 
 		return $rate;
