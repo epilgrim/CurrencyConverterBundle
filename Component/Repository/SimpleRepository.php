@@ -2,10 +2,9 @@
 namespace Epilgrim\CurrencyConverterBundle\Component\Repository;
 
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
-use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
 use Epilgrim\CurrencyConverterBundle\Component\Repository\Repository;
 
-class SimpleRepository extends Repository implements RepositoryInterface
+class SimpleRepository extends Repository
 {
 
 	private $list = array();

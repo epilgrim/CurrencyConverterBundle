@@ -4,6 +4,7 @@ namespace Epilgrim\CurrencyConverterBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
+use Epilgrim\CurrencyConverterBundle\Model\CurrencyInterface;
 
 /**
  * Currency
@@ -129,7 +130,7 @@ class CurrencyRate implements CurrencyRateInterface
      * Sets the currency
      * @param \Epilgrim\CurrencyBundle\Entity\Currency $currency Currency
      */
-    public function setCurrency(\Epilgrim\CurrencyBundle\Entity\Currency $currency)
+    public function setCurrency(CurrencyInterface $currency)
     {
         $this->currency = $currency;
         return $this;

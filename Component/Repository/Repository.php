@@ -1,6 +1,7 @@
 <?php
 namespace Epilgrim\CurrencyConverterBundle\Component\Repository;
 
+use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
 use Epilgrim\CurrencyConverterBundle\Model\FinderInterface;
 use Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException;
@@ -8,7 +9,7 @@ use Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException;
 /**
  * Repository of Rates for a given currency
  */
-abstract class Repository{
+abstract class Repository implements RepositoryInterface {
 
 	protected $finder;
 

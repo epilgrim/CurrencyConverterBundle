@@ -2,6 +2,7 @@
 
 namespace Epilgrim\CurrencyConverterBundle\Entity;
 
+use Epilgrim\CurrencyConverterBundle\Model\CurrencyInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
@@ -9,8 +10,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="\Epilgrim\CurrencyConverterBundle\Entity\CurrencyRepository")
  */
-class Currency
+class Currency implements CurrencyInterface
 {
     /**
      * @var integer

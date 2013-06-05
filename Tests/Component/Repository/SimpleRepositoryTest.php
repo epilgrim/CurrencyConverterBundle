@@ -69,9 +69,9 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
             ->setDateTo( new \DateTime('2012-12-31'))
             ->setRate( 1.5 );
 
-        $finder = $this->getMock('Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder', array('find'));
+        $finder = $this->getMock('Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder');
         $finder->expects($this->once())
-            ->method('find')
+            ->method('findAndAdd')
             ->will($this->returnValue($rate1))
             ;
         $repo = new SimpleRepository($finder);
