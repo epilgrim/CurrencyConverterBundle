@@ -3,8 +3,9 @@
 namespace Epilgrim\CurrencyConverterBundle\Component\Converter;
 
 use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
+use Epilgrim\CurrencyConverterBundle\Model\ConverterInterface;
 
-class Converter
+class Converter implements ConverterInterface
 {
 	protected $default;
 	protected $repository;

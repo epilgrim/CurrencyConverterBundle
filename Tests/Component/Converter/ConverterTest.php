@@ -44,6 +44,8 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(5,$converter->convert('1', 'USD', 'ARG', new \DateTime()), 'Converts between different currencies at current time', 0.0001);
 
+        $this->assertEquals(5,$converter->convert('5', 'ARG', 'ARG', new \DateTime()), 'Converts between same currencies at current time', 0.0001);
+
         $this->assertEquals(6.66666,$converter->convert('1', 'USD', 'ARG', new \DateTime('2011-01-01')), 'Converts between different currencies at past time', '0.0001');
     }
 
