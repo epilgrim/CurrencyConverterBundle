@@ -16,7 +16,7 @@
         </service>
 
         <service id="epilgrim_currency.finder" class="Epilgrim\CurrencyBundle\Component\Finder\FindAll">
-            <argument type="service" id="epilgrim_currency.finder" />
+            <argument type="service" id="epilgrim_currency.currency.repository" />
         </service>
 
         <service id="epilgrim_currency.currency.repository"
