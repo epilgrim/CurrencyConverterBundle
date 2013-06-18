@@ -3,6 +3,8 @@
 namespace Epilgrim\CurrencyConverterBundle\Component\Finder;
 
 use Epilgrim\CurrencyConverterBundle\Model\FinderInterface;
+use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
+use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRepository;
 
 class FindAll implements FinderInterface
 {
@@ -22,7 +24,7 @@ class FindAll implements FinderInterface
 	{
 		$currencies = $this->currencyRepository->getAll();
 		foreach ($currencies as $currency){
-			foreach ($currency->getRates as $rate){
+			foreach ($currency->getRates() as $rate){
 				$repository->add($currency->getCode(), $rate);
 			}
 		}
