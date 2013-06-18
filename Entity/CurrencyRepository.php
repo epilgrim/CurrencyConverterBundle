@@ -12,7 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class CurrencyRepository extends EntityRepository
 {
-	public function findAll($date){
+	public function getAll(){
 	    $qb = $this->_em->createQueryBuilder();
 	    $qb->select('c')
 	        ->from('Epilgrim\CurrencyConverterBundle\Entity\Currency', 'c')

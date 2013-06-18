@@ -20,7 +20,7 @@ class FindAll implements FinderInterface
 
 	public function initialize(RepositoryInterface $repository)
 	{
-		$currencies = $this->currencyRepository->findAll();
+		$currencies = $this->currencyRepository->getAll();
 		foreach ($currencies as $currency){
 			foreach ($currency->getRates as $rate){
 				$repository->add($currency->getCode(), $rate);
