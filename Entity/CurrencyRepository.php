@@ -34,8 +34,6 @@ class CurrencyRepository extends EntityRepository
             ->setParameter('date', $date);
         $result = $qb->getQuery()->getResult();
 
-        //\Doctrine\Common\Util\Debug::dump($qb->getQuery()->getResult(2),5);
-
         return $result;
     }
 }
