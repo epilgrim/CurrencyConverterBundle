@@ -45,8 +45,8 @@ class CurrencyRate implements CurrencyRateInterface
     private $rate;
 
     /**
-     * @ManyToOne(targetEntity="\Epilgrim\CurrencyBundle\Entity\Currency", inversedBy="rates")
-     * @JoinColumn(name="currency_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\Epilgrim\CurrencyConverterBundle\Entity\Currency", inversedBy="rates")
+     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
      **/
     private $currency;
 

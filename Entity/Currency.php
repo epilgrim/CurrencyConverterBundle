@@ -38,7 +38,7 @@ class Currency implements CurrencyInterface
     private $name;
 
     /**
-     * @OneToMany(targetEntity="Epilgrim\CurrencyBundle\Entity\CurrencyRate", mappedBy="currency")
+     * @ORM\OneToMany(targetEntity="Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate", mappedBy="currency")
      **/
     private $rates;
 
