@@ -14,7 +14,7 @@ class CurrencyRepository extends EntityRepository
 {
 	public function getAll(){
 	    $qb = $this->_em->createQueryBuilder();
-	    $qb->select('c')
+	    $qb->select('c', 'r')
 	        ->from('Epilgrim\CurrencyConverterBundle\Entity\Currency', 'c')
 	        ->innerJoin('c.rates', 'r')
 	        ->orderBy('r.dateFrom');
