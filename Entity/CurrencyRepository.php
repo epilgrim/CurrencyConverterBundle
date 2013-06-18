@@ -12,13 +12,30 @@ use Doctrine\ORM\EntityRepository;
  */
 class CurrencyRepository extends EntityRepository
 {
-	public function getAll(){
-	    $qb = $this->_em->createQueryBuilder();
-	    $qb->select('c', 'r')
-	        ->from('Epilgrim\CurrencyConverterBundle\Entity\Currency', 'c')
-	        ->innerJoin('c.rates', 'r')
-	        ->orderBy('r.dateFrom');
+    public function getAll(){
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('r', 'c')
+            ->from('Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate', 'r')
+                ->innerJoin('r.currency', 'c')
+            ->orderBy('r.dateFrom');
 
-	    return $qb->getQuery()->getResult();
-	}
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findByCodeAndDate($code, $date){
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('r', 'c')
+            ->from('Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate', 'r')
+                ->innerJoin('r.currency', 'c')
+            ->where('c.code = :code')
+                ->andWhere('r.dateFrom <= :date')
+                ->andWhere('r.dateTo > :date')
+            ->setParameter('code', $code)
+            ->setParameter('date', $date);
+        $result = $qb->getQuery()->getResult();
+
+        //\Doctrine\Common\Util\Debug::dump($qb->getQuery()->getResult(2),5);
+
+        return $result;
+    }
 }
