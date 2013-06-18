@@ -3,6 +3,7 @@
 namespace Epilgrim\CurrencyConverterBundle\Entity;
 
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyInterface;
+use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Currency
@@ -109,6 +110,19 @@ class Currency implements CurrencyInterface
     public function setRates(ArrayCollection $rates)
     {
         $this->rates = $rates;
+        return $this;
+    }
+
+    public function addRate(CurrencyRateInterface $rate)
+    {
+        $rate->setCurrency($this);
+        $this->rates->add($rate);
+        return $this;
+    }
+
+    public function removeRate(CurrencyRateInterface $rate)
+    {
+        $this->rates->removeElement($rate);
         return $this;
     }
 
