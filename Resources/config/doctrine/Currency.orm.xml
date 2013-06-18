@@ -1,0 +1,14 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Epilgrim\CurrencyConverterBundle\Entity\Currency" table="epilgrim_currency" repository-class="Epilgrim\CurrencyConverterBundle\Entity\CurrencyRepository">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="code" column="code" type="string" length="3" />
+        <field name="name" column="name" type="string" />
+        <one-to-many field="rates" target-entity="Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate" mapped-by="currency" />
+    </entity>
+</doctrine-mapping>

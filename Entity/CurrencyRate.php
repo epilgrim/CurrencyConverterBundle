@@ -9,44 +9,35 @@ use Epilgrim\CurrencyConverterBundle\Model\CurrencyInterface;
 /**
  * Currency
  *
- * @ORM\Table()
- * @ORM\Entity
  */
 class CurrencyRate implements CurrencyRateInterface
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="date_from", type="datetime")
      */
     private $dateFrom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="date_to", type="datetime")
      */
     private $dateTo;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="rate", type="float")
      */
     private $rate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Epilgrim\CurrencyConverterBundle\Entity\Currency", inversedBy="rates")
-     * @ORM\JoinColumn(name="currency_id", referencedColumnName="id")
+     * @var Epilgrim\CurrencyConverterBundle\Entity\Currency
      **/
     private $currency;
 

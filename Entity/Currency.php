@@ -3,42 +3,33 @@
 namespace Epilgrim\CurrencyConverterBundle\Entity;
 
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyInterface;
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Currency
  *
- * @ORM\Table()
- * @ORM\Entity
- * @ORM\Entity(repositoryClass="\Epilgrim\CurrencyConverterBundle\Entity\CurrencyRepository")
  */
 class Currency implements CurrencyInterface
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=3)
      */
     private $code;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate", mappedBy="currency")
+     * @var  decimal
      **/
     private $rates;
 
