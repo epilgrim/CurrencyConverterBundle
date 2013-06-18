@@ -6,14 +6,24 @@
 
     <services>
 
-        <service id="epilgrim_currency.converter" class="Epilgrim\CurrencyBundle\Component\Converter\Converter.php">
+        <service id="epilgrim_currency.converter" class="Epilgrim\CurrencyBundle\Component\Converter\Converter">
             <argument>EUR</argument>
             <argument type="service" id="epilgrim_currency.repository" />
         </service>
 
-        <service id="fos_user.profile.form.type" class="FOS\UserBundle\Form\Type\ProfileFormType">
-            <argument>%fos_user.model.user.class%</argument>
-            <tag name="form.type" alias="fos_user_profile" />
+        <service id="epilgrim_currency.repository" class="Epilgrim\CurrencyBundle\Component\Repository\SimpleRepository">
+            <argument type="service" id="epilgrim_currency.finder" />
+        </service>
+
+        <service id="epilgrim_currency.finder" class="Epilgrim\CurrencyBundle\Component\Finder\FindAll">
+            <argument type="service" id="epilgrim_currency.finder" />
+        </service>
+
+        <service id="epilgrim_currency.currency.repository"
+            factory-service="doctrine"
+            factory-method="getRepository"
+            class="Epilgrim\CurrencyBundle\Entity\CurrencyRepository">
+            <argument>Epilgrim\CurrencyBundle\Entity\Currency</argument>
         </service>
 
     </services>
