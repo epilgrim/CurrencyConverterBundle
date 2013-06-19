@@ -57,7 +57,23 @@ class CurrencyData implements FixtureInterface
                     array(
                         'dateFrom'=> new \DateTime('2010-01-01'),
                         'dateTo'=> new \DateTime('2015-12-31'),
-                        'rate' => 1.5,
+                        'rate' => 2,
+                    ),
+                )
+            ),
+            array(
+                'name' => 'Argentinean Peso',
+                'code' => 'ARS',
+                'rates' => array(
+                    array(
+                        'dateFrom'=> new \DateTime('2000-01-01'),
+                        'dateTo'=> new \DateTime('2010-01-01'),
+                        'rate' => 6,
+                    ),
+                    array(
+                        'dateFrom'=> new \DateTime('2010-01-01'),
+                        'dateTo'=> new \DateTime('2015-12-31'),
+                        'rate' => 10,
                     ),
                 )
             ),

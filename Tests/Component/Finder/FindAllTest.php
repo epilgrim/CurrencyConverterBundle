@@ -12,16 +12,16 @@ class FindAllTest extends BaseFunctionalTestCase
     {
         $this->em = $this->getMockSqliteEntityManager();
         $this->createSchema($this->em);
-        $this->loadFixtures($this->em);
     }
 
     public function testDataIsLoaded()
     {
+        $this->loadFixtures($this->em);
+
         $repository = $this->em->getRepository('Epilgrim\CurrencyConverterBundle\Entity\Currency');
-        $this->assertGreaterThan(0, count($repository->findAll()), 'The fixtures are loaded');
 
         $rates = $repository->getAll();
-        $this->assertEquals(2, count($rates), 'All the rates loaded at once');
+        $this->assertEquals(4, count($rates), 'All the rates loaded at once');
     }
 /*
     public function testCreateEcbAdapter()
