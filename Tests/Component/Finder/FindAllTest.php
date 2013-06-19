@@ -3,6 +3,9 @@
 namespace Epilgrim\CurrencyConverterBundle\Tests\Component\Finder;
 
 use Epilgrim\CurrencyConverterBundle\Tests\BaseFunctionalTestCase;
+use Epilgrim\CurrencyConverterBundle\Component\Finder\FindAll;
+use Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository;
+use Epilgrim\CurrencyConverterBundle\Tests\Fixtures\CurrencyData;
 
 class FindAllTest extends BaseFunctionalTestCase
 {
@@ -21,32 +24,27 @@ class FindAllTest extends BaseFunctionalTestCase
         $repository = $this->em->getRepository('Epilgrim\CurrencyConverterBundle\Entity\Currency');
 
         $rates = $repository->getAll();
-        $this->assertEquals(4, count($rates), 'All the rates loaded at once');
+        $this->assertEquals(CurrencyData::TOTAL_RATES_IN_FIXTURE, count($rates), 'All the rates loaded at once');
     }
-/*
-    public function testCreateEcbAdapter()
+
+    public function testFindAll()
     {
-        $factory = new AdapterFactory($this->em, 'EUR', array('EUR', 'USD'), self::CURRENCY_ENTITY);
-        $adapter = $factory->createEcbAdapter();
+        $this->loadFixtures($this->em);
 
-        $this->assertInstanceOf('Lexik\Bundle\CurrencyBundle\Adapter\EcbCurrencyAdapter', $adapter);
-        $this->assertEquals('EUR', $adapter->getDefaultCurrency());
-        $this->assertEquals(array('EUR', 'USD'), $adapter->getManagedCurrencies());
-        $this->assertEquals(0, count($adapter));
+        $currencyRepository = $this->em->getRepository('Epilgrim\CurrencyConverterBundle\Entity\Currency');
+
+        $finder = new FindAll($currencyRepository);
+
+        //$repository = new SimpleRepository($finder);
+        $repository = $this->getMockBuilder('Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $repository->expects($this->exactly(CurrencyData::TOTAL_RATES_IN_FIXTURE))
+             ->method('add')
+             ->will($this->returnValue(true));
+        $finder->initialize($repository);
+
     }
-
-    public function testCreateDoctrineAdapter()
-    {
-
-        $factory = new AdapterFactory($this->em, 'USD', array('EUR'), self::CURRENCY_ENTITY);
-        $adapter = $factory->createDoctrineAdapter();
-
-        $this->assertInstanceOf('Lexik\Bundle\CurrencyBundle\Adapter\DoctrineCurrencyAdapter', $adapter);
-        $this->assertEquals('USD', $adapter->getDefaultCurrency());
-        $this->assertEquals(array('EUR'), $adapter->getManagedCurrencies());
-        $this->assertEquals(2, count($adapter));
-    }
-*/
 
 }
 

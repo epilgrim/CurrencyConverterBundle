@@ -15,8 +15,13 @@ use Doctrine\Common\Persistence\ObjectManager;
 class CurrencyData implements FixtureInterface
 {
     /**
-* @see Doctrine\Common\DataFixtures.FixtureInterface::load()
-*/
+     * Amount of rates loaded by the fixture
+     */
+    const TOTAL_RATES_IN_FIXTURE = 4;
+
+    /**
+     * @see Doctrine\Common\DataFixtures.FixtureInterface::load()
+     */
     public function load(ObjectManager $manager)
     {
 

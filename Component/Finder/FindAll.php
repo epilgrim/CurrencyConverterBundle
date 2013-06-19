@@ -24,8 +24,7 @@ class FindAll implements FinderInterface
 	{
 		$rates = $this->currencyRepository->getAll();
 		foreach ($rates as $rate){
-			$repository->add($rate->getCurrency->getCode(), $rate);
-			return $rate;
+			$repository->add($rate->getCurrency()->getCode(), $rate);
 		}
 	}
 }
