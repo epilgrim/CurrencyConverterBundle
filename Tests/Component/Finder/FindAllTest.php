@@ -27,7 +27,7 @@ class FindAllTest extends BaseFunctionalTestCase
         $this->assertEquals(CurrencyData::TOTAL_RATES_IN_FIXTURE, count($rates), 'All the rates loaded at once');
     }
 
-    public function testFindAll()
+    public function testInitializeLoadsAllTheRates()
     {
         $this->loadFixtures($this->em);
 
