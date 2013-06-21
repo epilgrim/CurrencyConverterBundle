@@ -26,6 +26,11 @@
             <argument>Epilgrim\CurrencyConverterBundle\Entity\Currency</argument>
         </service>
 
+        <service id="epilgrim_currency.type.rate_money" class="Epilgrim\CurrencyConverterBundle\Form\Type\RateMoneyType">
+            <argument type="service" id="epilgrim_currency.repository"/>
+            <tag name="form.type" alias="epilgrim_rate_money" />
+        </service>
+
     </services>
 
 </container>
