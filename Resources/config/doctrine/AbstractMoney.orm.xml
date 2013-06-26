@@ -11,6 +11,6 @@
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO" />
         </id>
-        <field name="value" column="value" type="decimal" scale="4" />
+        <field name="value" column="value" type="float" />
 	</entity>
 </doctrine-mapping>

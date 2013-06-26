@@ -10,21 +10,29 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class FixedRateMoneyType extends AbstractType
 {
-    /**
-     * @var ObjectManager
-     */
-    private $om;
+   public function __construct(RepositoryInterface $currencyRepository)
+    {
+        $this->currencyRepository = $currencyRepository;
+    }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $transformer = new CurrencyToFixedRateTransformer($this->currencyRepository);
         $builder
+            ->addViewTransformer($transformer)
             ->add('value', 'number')
-            ->add('rate', 'epilgrim_rate_money')        ;
+            ->add('date', 'date', array('widget' => 'single_text'))
+            ->add('currency', 'entity', array(
+                'class' => 'Epilgrim\CurrencyConverterBundle\Entity\Currency',
+                'mapped' => false,
+            ))
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'data_class' => '\Epilgrim\CurrencyConverterBundle\Entity\FixedRateMoney'
         ));
     }
 

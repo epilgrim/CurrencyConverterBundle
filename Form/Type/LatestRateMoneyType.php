@@ -29,6 +29,7 @@ class LatestRateMoneyType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
+            'data_class' => '\Epilgrim\CurrencyConverterBundle\Entity\LatestRateMoney'
         ));
     }
 

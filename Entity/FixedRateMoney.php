@@ -50,7 +50,7 @@ class FixedRateMoney extends AbstractMoney
     /**
      * @param datetime $date
      */
-    public function setDate(\Datetime $date)
+    public function setDate(\Datetime $date = NULL)
     {
         if ($date != $this->getDate()){
             $this->date = $date;
