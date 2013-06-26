@@ -42,8 +42,12 @@ class CurrencyToFixedRateTransformer implements DataTransformerInterface
      */
     public function reverseTransform($data)
     {
+        var_dump($data);
         if (null !== $data->getDate() && null !== $data->getCurrency()){
-            return $data->setRate($this->currencyRepository->get($data->getCurrency()->getCode(), $data->getDate()));
+            $rate = $this->currencyRepository->get($data->getCurrency()->getCode(), $data->getDate());
+            $data->setRate( $rate );
+            var_dump($data);
+            return $data;
         }
         return null;
     }

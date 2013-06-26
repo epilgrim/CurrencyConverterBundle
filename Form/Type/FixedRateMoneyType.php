@@ -24,7 +24,6 @@ class FixedRateMoneyType extends AbstractType
             ->add('date', 'date', array('widget' => 'single_text'))
             ->add('currency', 'entity', array(
                 'class' => 'Epilgrim\CurrencyConverterBundle\Entity\Currency',
-                'mapped' => false,
             ))
         ;
     }

@@ -83,6 +83,8 @@ class FixedRateMoney extends AbstractMoney
      * @return Currency
      */
     public function getCurrency(){
-        return $this->getRate()->getCurrency();
+        if (null !== $this->getRate()){
+            return $this->getRate()->getCurrency();
+        }
     }
 }
