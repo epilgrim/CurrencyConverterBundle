@@ -4,7 +4,8 @@ namespace Epilgrim\CurrencyConverterBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Epilgrim\CurrencyConverterBundle\Form\DataTransformer\CurrencyToFixedRateTransformer;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
 use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -17,15 +18,35 @@ class FixedRateMoneyType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transformer = new CurrencyToFixedRateTransformer($this->currencyRepository);
         $builder
-            ->addViewTransformer($transformer)
             ->add('value', 'number')
             ->add('date', 'date', array('widget' => 'single_text'))
             ->add('currency', 'entity', array(
                 'class' => 'Epilgrim\CurrencyConverterBundle\Entity\Currency',
+                'mapped' => false,
             ))
         ;
+
+        $currencyRepository = $this->currencyRepository;
+        $builder->addEventListener(
+            FormEvents::SUBMIT,
+            function(FormEvent $event) use ($currencyRepository){
+                $form = $event->getForm();
+                $data = $event->getData();
+
+                $data->setRate($currencyRepository->get($form->get('currency')->getData()->getCode(), $form->get('date')->getData()));
+            }
+        );
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function(FormEvent $event) use ($currencyRepository){
+                $form = $event->getForm();
+                $data = $event->getData();
+                if (null !== $data) {
+                    $form->get('currency')->setData($data->getCurrency());
+                }
+            }
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
