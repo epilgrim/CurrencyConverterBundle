@@ -12,12 +12,6 @@ use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate;
 class FixedRateMoney extends AbstractMoney
 {
     /**
-     * @var integer
-     *
-     */
-    private $id;
-
-    /**
      * @var datetime
      *
      */
@@ -27,16 +21,6 @@ class FixedRateMoney extends AbstractMoney
      * @var Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate
      **/
     private $rate;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * get the date of the application of the rates.

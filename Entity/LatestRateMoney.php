@@ -12,25 +12,9 @@ use Epilgrim\CurrencyConverterBundle\Entity\Currency;
 class LatestRateMoney extends AbstractMoney
 {
     /**
-     * @var integer
-     *
-     */
-    private $id;
-
-    /**
      * @var Epilgrim\CurrencyConverterBundle\Entity\Currency
      **/
     private $currency;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * get the currency
