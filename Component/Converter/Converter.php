@@ -2,7 +2,7 @@
 
 namespace Epilgrim\CurrencyConverterBundle\Component\Converter;
 
-use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
+use Epilgrim\CurrencyConverterBundle\Model\ContainerInterface;
 use Epilgrim\CurrencyConverterBundle\Model\ConverterInterface;
 
 class Converter implements ConverterInterface
@@ -10,7 +10,7 @@ class Converter implements ConverterInterface
 	protected $default;
 	protected $repository;
 
-	public function __construct($default, RepositoryInterface $repository)
+	public function __construct($default, ContainerInterface $repository)
 	{
 		$this->default = $default;
 		$this->repository = $repository;

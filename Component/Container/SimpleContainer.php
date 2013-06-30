@@ -1,10 +1,10 @@
 <?php
-namespace Epilgrim\CurrencyConverterBundle\Component\Repository;
+namespace Epilgrim\CurrencyConverterBundle\Component\Container;
 
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
-use Epilgrim\CurrencyConverterBundle\Component\Repository\Repository;
+use Epilgrim\CurrencyConverterBundle\Component\Container\Container;
 
-class SimpleRepository extends Repository
+class SimpleContainer extends Container
 {
 
 	private $list = array();

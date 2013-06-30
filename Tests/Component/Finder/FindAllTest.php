@@ -4,7 +4,7 @@ namespace Epilgrim\CurrencyConverterBundle\Tests\Component\Finder;
 
 use Epilgrim\CurrencyConverterBundle\Tests\BaseFunctionalTestCase;
 use Epilgrim\CurrencyConverterBundle\Component\Finder\FindAll;
-use Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository;
+use Epilgrim\CurrencyConverterBundle\Component\Container\SimpleContainer;
 use Epilgrim\CurrencyConverterBundle\Tests\Fixtures\CurrencyData;
 
 class FindAllTest extends BaseFunctionalTestCase
@@ -35,8 +35,8 @@ class FindAllTest extends BaseFunctionalTestCase
 
         $finder = new FindAll($currencyRepository);
 
-        //$repository = new SimpleRepository($finder);
-        $repository = $this->getMockBuilder('Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository')
+        //$repository = new SimpleContainer($finder);
+        $repository = $this->getMockBuilder('Epilgrim\CurrencyConverterBundle\Component\Container\SimpleContainer')
             ->disableOriginalConstructor()
             ->getMock();
         $repository->expects($this->exactly(CurrencyData::TOTAL_RATES_IN_FIXTURE))

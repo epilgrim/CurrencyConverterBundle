@@ -4,7 +4,7 @@ namespace Epilgrim\CurrencyConverterBundle\Model;
 
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
 
-interface RepositoryInterface
+interface ContainerInterface
 {
 	public function get($code, \DateTime $date);
 

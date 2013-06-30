@@ -1,15 +1,15 @@
 <?php
-namespace Epilgrim\CurrencyConverterBundle\Component\Repository;
+namespace Epilgrim\CurrencyConverterBundle\Component\Container;
 
-use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
+use Epilgrim\CurrencyConverterBundle\Model\ContainerInterface;
 use Epilgrim\CurrencyConverterBundle\Model\CurrencyRateInterface;
 use Epilgrim\CurrencyConverterBundle\Model\FinderInterface;
 use Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException;
 
 /**
- * Repository of Rates for a given currency
+ * Container of Rates for a given currency
  */
-abstract class Repository implements RepositoryInterface {
+abstract class Container implements ContainerInterface {
 
 	protected $finder;
 
@@ -43,7 +43,7 @@ abstract class Repository implements RepositoryInterface {
 	abstract protected function find ($code, \DateTime $date);
 
 	/**
-	 * Adds a new rate to the repository
+	 * Adds a new rate to the Container
 	 * @param [type]                $code [description]
 	 * @param CurrencyRateInterface $rate [description]
 	 */

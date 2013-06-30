@@ -1,7 +1,7 @@
 <?php
 namespace Epilgrim\CurrencyConverterBundle\Tests\Component\Converter;
 
-use Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository;
+use Epilgrim\CurrencyConverterBundle\Component\Container\SimpleContainer;
 use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate;
 use Epilgrim\CurrencyConverterBundle\Component\Converter\Converter;
 
@@ -31,7 +31,7 @@ class ConverterTest extends \PHPUnit_Framework_TestCase
 
         $finder = $this->getMock('Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder');
 
-        $repository = new SimpleRepository($finder);
+        $repository = new SimpleContainer($finder);
         $repository->add('USD', $rate1);
         $repository->add('USD', $rate2);
         $repository->add('ARG', $rate3);

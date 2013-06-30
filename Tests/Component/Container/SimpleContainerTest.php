@@ -1,13 +1,13 @@
 <?php
-namespace Epilgrim\CurrencyConverterBundle\Tests\Repository;
+namespace Epilgrim\CurrencyConverterBundle\Tests\Container;
 
-use Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository;
+use Epilgrim\CurrencyConverterBundle\Component\Container\SimpleContainer;
 use Epilgrim\CurrencyConverterBundle\Entity\Currency;
 use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate;
 use Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder;
 use Epilgrim\CurrencyConverterBundle\Exception\NoRateFoundException;
 
-class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
+class SimpleContainerTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testReturnsCorrectRate()
@@ -25,7 +25,7 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
             ->setRate( 2 );
 
         $finder = $this->getFinder();
-        $repo = new SimpleRepository($finder);
+        $repo = new SimpleContainer($finder);
         $repo->add('USD', $rate1);
         $repo->add('USD', $rate2);
 
@@ -40,7 +40,7 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
     public function testExceptionIfNotManagedCurrency()
     {
         $finder = $this->getFinder();
-        $repo = new SimpleRepository($finder);
+        $repo = new SimpleContainer($finder);
         $repo->get('USD', new \DateTime('2011-01-01'));
     }
 
@@ -50,7 +50,7 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
     public function testExceptionIfNotRateForCurrency()
     {
         $finder = $this->getFinder();
-        $repo = new SimpleRepository($finder);
+        $repo = new SimpleContainer($finder);
         $rate1 = new CurrencyRate();
         $rate1
             ->setDateFrom( new \DateTime('2010-01-01'))
@@ -74,7 +74,7 @@ class SimpleRepositoryTest extends \PHPUnit_Framework_TestCase
             ->method('findAndAdd')
             ->will($this->returnValue($rate1))
             ;
-        $repo = new SimpleRepository($finder);
+        $repo = new SimpleContainer($finder);
         $this->assertSame($rate1, $repo->get('USD', new \DateTime('2011-01-01')));
     }
 

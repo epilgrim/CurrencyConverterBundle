@@ -3,7 +3,7 @@
 namespace Epilgrim\CurrencyConverterBundle\Component\Finder;
 
 use Epilgrim\CurrencyConverterBundle\Model\FinderInterface;
-use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
+use Epilgrim\CurrencyConverterBundle\Model\ContainerInterface;
 use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRepository;
 
 class FindAll implements FinderInterface
@@ -15,12 +15,12 @@ class FindAll implements FinderInterface
 		$this->currencyRepository = $repo;
 	}
 
-	public function findAndAdd($code, \DateTime $date, RepositoryInterface $repository)
+	public function findAndAdd($code, \DateTime $date, ContainerInterface $repository)
 	{
 	}
 
 
-	public function initialize(RepositoryInterface $repository)
+	public function initialize(ContainerInterface $repository)
 	{
 		$rates = $this->currencyRepository->getAll();
 		foreach ($rates as $rate){
