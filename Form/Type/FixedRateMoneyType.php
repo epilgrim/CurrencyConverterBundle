@@ -6,13 +6,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
-use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
+use Epilgrim\CurrencyConverterBundle\Model\ContainerInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Epilgrim\CurrencyConverterBundle\Form\DataTransformer\CleanEmptyFixedRateMoneyTransformer;
 
 class FixedRateMoneyType extends AbstractType
 {
-   public function __construct(RepositoryInterface $currencyRepository)
+   public function __construct(ContainerInterface $currencyRepository)
     {
         $this->currencyRepository = $currencyRepository;
     }

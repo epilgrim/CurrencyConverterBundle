@@ -8,10 +8,10 @@
 
         <service id="epilgrim_currency.converter" class="Epilgrim\CurrencyConverterBundle\Component\Converter\Converter">
             <argument>EUR</argument>
-            <argument type="service" id="epilgrim_currency.repository" />
+            <argument type="service" id="epilgrim_currency.container" />
         </service>
 
-        <service id="epilgrim_currency.repository" class="Epilgrim\CurrencyConverterBundle\Component\Repository\SimpleRepository">
+        <service id="epilgrim_currency.container" class="Epilgrim\CurrencyConverterBundle\Component\Container\SimpleContainer">
             <argument type="service" id="epilgrim_currency.finder" />
         </service>
 
@@ -27,7 +27,7 @@
         </service>
 
         <service id="epilgrim_currency.type.fixed_rate_money" class="Epilgrim\CurrencyConverterBundle\Form\Type\FixedRateMoneyType">
-            <argument type="service" id="epilgrim_currency.repository"/>
+            <argument type="service" id="epilgrim_currency.container"/>
             <tag name="form.type" alias="epilgrim_fixed_rate_money" />
         </service>
 

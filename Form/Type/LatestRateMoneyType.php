@@ -4,16 +4,10 @@ namespace Epilgrim\CurrencyConverterBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Epilgrim\CurrencyConverterBundle\Form\DataTransformer\CurrencyToFixedRateTransformer;
-use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class LatestRateMoneyType extends AbstractType
 {
-    /**
-     * @var ObjectManager
-     */
-    private $om;
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -29,7 +23,7 @@ class LatestRateMoneyType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => '\Epilgrim\CurrencyConverterBundle\Entity\LatestRateMoney'
+            'data_class' => 'Epilgrim\CurrencyConverterBundle\Entity\LatestRateMoney'
         ));
     }
 
