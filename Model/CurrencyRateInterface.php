@@ -9,4 +9,6 @@ interface CurrencyRateInterface{
 	public function getDateTo();
 
 	public function getRate();
+
+	public function getCurrency();
 }

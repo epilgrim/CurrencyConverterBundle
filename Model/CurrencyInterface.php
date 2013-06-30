@@ -6,4 +6,6 @@ interface CurrencyInterface{
 
 	public function getCode();
 
+	public function getName();
+
 }
