@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormEvent;
 use Epilgrim\CurrencyConverterBundle\Model\RepositoryInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Epilgrim\CurrencyConverterBundle\Form\DataTransformer\CleanEmptyFixedRateMoneyTransformer;
 
 class FixedRateMoneyType extends AbstractType
 {
@@ -18,7 +19,9 @@ class FixedRateMoneyType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $transformer = new CleanEmptyFixedRateMoneyTransformer();
         $builder
+            ->addViewTransformer($transformer)
             ->add('value', 'number')
             ->add('date', 'date', array('widget' => 'single_text'))
             ->add('currency', 'entity', array(
@@ -33,8 +36,9 @@ class FixedRateMoneyType extends AbstractType
             function(FormEvent $event) use ($currencyRepository){
                 $form = $event->getForm();
                 $data = $event->getData();
-
-                $data->setRate($currencyRepository->get($form->get('currency')->getData()->getCode(), $form->get('date')->getData()));
+                if (null !== $form->get('currency')->getData()->getCode() && null !== $form->get('date')->getData()){
+                    $data->setRate($currencyRepository->get($form->get('currency')->getData()->getCode(), $form->get('date')->getData()));
+                }
             }
         );
         $builder->addEventListener(
