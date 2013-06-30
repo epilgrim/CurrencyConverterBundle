@@ -4,6 +4,7 @@ namespace Epilgrim\CurrencyConverterBundle\Entity;
 
 use Epilgrim\CurrencyConverterBundle\Entity\AbstractMoney;
 use Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Currency
@@ -13,12 +14,13 @@ class FixedRateMoney extends AbstractMoney
 {
     /**
      * @var datetime
-     *
+     * @Assert\NotNull()
      */
     private $date;
 
     /**
      * @var Epilgrim\CurrencyConverterBundle\Entity\CurrencyRate
+     * @Assert\NotNull()
      **/
     private $rate;
 

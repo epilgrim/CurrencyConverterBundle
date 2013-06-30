@@ -2,6 +2,8 @@
 
 namespace Epilgrim\CurrencyConverterBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  *
  */
@@ -15,6 +17,7 @@ abstract class AbstractMoney
 
     /**
      * @var float
+     * @Assert\NotNull()
      *
      */
     private $value;
