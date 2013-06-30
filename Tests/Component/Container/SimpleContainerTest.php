@@ -69,7 +69,7 @@ class SimpleContainerTest extends \PHPUnit_Framework_TestCase
             ->setDateTo( new \DateTime('2012-12-31'))
             ->setRate( 1.5 );
 
-        $finder = $this->getMock('Epilgrim\CurrencyConverterBundle\Tests\Component\Finder\EmptyFinder');
+        $finder = $this->getFinder();
         $finder->expects($this->once())
             ->method('findAndAdd')
             ->will($this->returnValue($rate1))
